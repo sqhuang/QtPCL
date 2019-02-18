@@ -1,0 +1,33 @@
+<RCC>
+  <qresource prefix="PoPoints">
+    <file>Resources/about.png</file>
+    <file>Resources/about.png</file>
+    <file>Resources/admin setting.png</file>
+    <file>Resources/admin setting_.png</file>
+    <file>Resources/bug.png</file>
+    <file>Resources/eglass-glass.png</file>
+    <file>Resources/emoji_haha.png</file>
+    <file>Resources/exit.png</file>
+    <file>Resources/fontAwesome_bug.png</file>
+    <file>Resources/fontAwesome_bugG.png</file>
+    <file>Resources/fontAwesome_bugGray.png</file>
+    <file>Resources/fontAwesome_bugO.png</file>
+    <file>Resources/fontAwesome_bugRG.png</file>
+    <file>Resources/fontAwesome_bugRR.png</file>
+    <file>Resources/fontAwesome_bugY.png</file>
+    <file>Resources/frame.png</file>
+    <file>Resources/help.png</file>
+    <file>Resources/iconfont-robot1.png</file>
+    <file>Resources/path.png</file>
+    <file>Resources/poisson.png</file>
+    <file>Resources/robotarm.png</file>
+    <file>Resources/savewholescan.png</file>
+    <file>Resources/setting.png</file>
+    <file>Resources/smooth.png</file>
+    <file>Resources/Steering.png</file>
+    <file>Resources/Steering1.png</file>
+    <file>Resources/Steering2.png</file>
+    <file>Resources/telescope.png</file>
+    <file>Resources/truth.png</file>
+  </qresource>
+</RCC>
