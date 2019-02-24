@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <!-- 请把FreeImageROOT属性的值替换为你的CGAL编译输出的目标目录，它包含x64、x86这样的子目录 -->
+    <FreeImageROOT>D:\dev\FreeImage3170\FreeImage</FreeImageROOT>
+    <!-- 指定INCLUDE路径-->
+    <IncludePath>$(FreeImageROOT)\source;$(IncludePath)</IncludePath>
+    <!-- 指定链接所需lib目录-->
+    <LibraryPath Condition="'$(Platform)'=='Win32'">$(FreeImageROOT)\Win32\Release;$(FreeImageROOT)\Win32\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Platform)'=='X64'">$(FreeImageROOT)\x64\Release;$(FreeImageROOT)\x64\Debug;$(LibraryPath)</LibraryPath>
+    <!-- 保证系统处于Debug模式时，可以使用相对路径读取源代码目录下的文件，比如"lena.jpg"而不必是"d:/work/test/test/lena.jpg" -->
+    <LocalDebuggerWorkingDirectory>$(ProjectDir)</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <!-- 让系统PATH临时包含指定的dll目录 -->
+    <LocalDebuggerEnvironment Condition="'$(Platform)'=='Win32'">PATH=%PATH%;$(FreeImageROOT)\Win32\Release;$(FreeImageROOT)\Win32\Debug</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment Condition="'$(Platform)'=='X64'">PATH=%PATH%;$(FreeImageROOT)\x64\Release;$(FreeImageROOT)\x64\Debug</LocalDebuggerEnvironment>
+  </PropertyGroup>
+  <!-- 以下是程序需要加载的lib文件。-->
+  <ItemDefinitionGroup>
+    <Link Condition="'$(Configuration)'=='Debug'">
+      <AdditionalDependencies>FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Link Condition="'$(Configuration)'=='Release'">
+      <AdditionalDependencies>FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

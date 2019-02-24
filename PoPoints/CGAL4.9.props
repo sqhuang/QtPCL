@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <!-- 请把CGALRoot属性的值替换为你的CGAL编译输出的目标目录，它包含x64、x86这样的子目录 -->
+    <CGALRoot>D:\dev\CGAL\CGAL-4.9</CGALRoot>
+    <!-- 指定INCLUDE路径-->
+    <IncludePath>$(CGALRoot)\include;$(CGALRoot)\build_2013\include;$(CGALRoot)\auxiliary\gmp\include;$(IncludePath)</IncludePath>
+    <!-- 指定链接所需lib目录-->
+    <LibraryPath Condition="'$(Platform)'=='Win32'">$(CGALRoot)\auxiliary\gmp\lib;$(CGALRoot)\build_2013\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Platform)'=='X64'">$(CGALRoot)\auxiliary\gmp\lib;$(CGALRoot)\build_2013\lib;$(LibraryPath)</LibraryPath>
+    <!-- 保证系统处于Debug模式时，可以使用相对路径读取源代码目录下的文件，比如"lena.jpg"而不必是"d:/work/test/test/lena.jpg" -->
+    <LocalDebuggerWorkingDirectory>$(ProjectDir)</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <!-- 让系统PATH临时包含指定的dll目录 -->
+    <LocalDebuggerEnvironment Condition="'$(Platform)'=='Win32'">PATH=%PATH%;$(CGALRoot)\build_2013\bin</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment Condition="'$(Platform)'=='X64'">PATH=%PATH%;$(CGALRoot)\build_2013\bin</LocalDebuggerEnvironment>
+    <!-- 指定Source路径-->
+    <SourcePath>$(VC_SourcePath);$(CGALRoot)\src;$(CGALRoot)\build_2013\src</SourcePath>
+  </PropertyGroup>
+  <!-- 以下是程序需要加载的lib文件。-->
+  <ItemDefinitionGroup>
+    <Link Condition="'$(Configuration)'=='Debug'">
+      <AdditionalDependencies>libgmp-10.lib;libmpfr-4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Link Condition="'$(Configuration)'=='Release'">
+      <AdditionalDependencies>libgmp-10.lib;libmpfr-4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

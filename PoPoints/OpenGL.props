@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     OpenCV 3.0.0属性表文件
+     不用单独配置环境变量OpenCV
+     也不用单独在系统PATH上添加OpenCV可执行路径
+     只需要在VisualStudio-"菜单"-"视图"-"属性管理器"中添加现有属性表，添加本文件
+
+     使用前请将下面的OpenGLROOT修改为你的OpenCV编译输出目录
+-->
+
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ImportGroup Label="PropertySheets" />
+    <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+
+        <!-- 请把OpenGLROOT属性的值替换为你的OpenCV编译输出的目标目录，它包含x64、x86这样的子目录 -->
+        <OpenGLROOT>D:\dev\config\vs2013</OpenGLROOT>
+
+        <!-- 指定INCLUDE路径-->
+        <IncludePath>$(OpenGLROOT)\freeglut\include;$(OpenGLROOT)\glew\include;$(OpenGLROOT)\glfw\include;$(IncludePath)</IncludePath>
+
+        <!-- 指定链接所需lib目录-->
+        <LibraryPath Condition="'$(Platform)'=='Win32'">$(OpenGLROOT)\glew\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+        <LibraryPath Condition="'$(Platform)'=='X64'">$(OpenGLROOT)\freeglut\lib;$(OpenGLROOT)\glfw\lib\Debug;$(OpenGLROOT)\glfw\lib\Release;$(OpenGLROOT)\glew\lib\Release\x64;$(LibraryPath)</LibraryPath>
+
+        <!-- 保证系统处于Debug模式时，可以使用相对路径读取源代码目录下的文件，比如"lena.jpg"而不必是"d:/work/test/test/lena.jpg" -->
+        <LocalDebuggerWorkingDirectory>$(ProjectDir)</LocalDebuggerWorkingDirectory>
+        <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+
+        <!-- 让系统PATH临时包含指定的dll目录 -->
+        <LocalDebuggerEnvironment Condition="'$(Platform)'=='Win32'">PATH=%PATH%;$(OpenGLROOT)\freeglut\bin;$(OpenGLROOT)\glew\bin\Release\Win32</LocalDebuggerEnvironment>
+        <LocalDebuggerEnvironment Condition="'$(Platform)'=='X64'">PATH=%PATH%;$(OpenGLROOT)\glew\bin\Release\x64</LocalDebuggerEnvironment>
+    </PropertyGroup>
+
+    <!-- 以下是程序需要加载的lib文件。-->
+    <ItemDefinitionGroup>
+        <Link Condition="'$(Configuration)'=='Debug'">
+            <AdditionalDependencies>glfw3.lib;freeglutd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+        <Link Condition="'$(Configuration)'=='Release'">
+            <AdditionalDependencies>glfw3.lib;glew32.lib;glew32s.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+    </ItemDefinitionGroup>
+    <ItemGroup />
+</Project>

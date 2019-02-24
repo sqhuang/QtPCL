@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+     PCL 3.0.0属性表文件
+     不用单独配置环境变量PCL
+     也不用单独在系统PATH上添加PCL可执行路径
+     只需要在VisualStudio-"菜单"-"视图"-"属性管理器"中添加现有属性表，添加本文件
+
+     使用前请将下面的PCL_ROOT修改为你的PCL编译输出目录
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <!-- 请把PCL_ROOT属性的值替换为你的PCL编译输出的目标目录，它包含x64、x86这样的子目录 -->
+    <PCL_ROOT>D:\dev\PCL 1.8.0</PCL_ROOT>
+    <!--VTK配置-->
+    <VTK_ROOT>D:\dev\VTK</VTK_ROOT>
+    <!-- 指定INCLUDE路径-->
+    <IncludePath>$(PCL_ROOT)\include\pcl-1.8;$(PCL_ROOT)\3rdParty\Eigen\eigen3;$(PCL_ROOT)\3rdParty\FLANN\include;$(PCL_ROOT)\3rdParty\OpenNI2\Include;$(PCL_ROOT)\3rdParty\Qhull\include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)'=='Debug'">$(VTK_ROOT)\VTK-D\include\vtk-7.0;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)'=='Release'">$(VTK_ROOT)\VTK-R\include\vtk-7.0;$(IncludePath)</IncludePath>
+    <!-- 指定链接所需lib目录-->
+    <LibraryPath>$(PCL_ROOT)\lib;$(PCL_ROOT)\3rdParty\OpenNI2\Lib;$(PCL_ROOT)\3rdParty\FLANN\lib;$(PCL_ROOT)\3rdParty\Qhull\lib;$(LibraryPath)</LibraryPath>
+    <!-- 指定VTK链接所需lib目录-->
+    <LibraryPath Condition="'$(Configuration)'=='Debug'">$(VTK_ROOT)\VTK-D\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)'=='Release'">$(VTK_ROOT)\VTK-R\lib;$(LibraryPath)</LibraryPath>
+    <!-- 保证系统处于Debug模式时，可以使用相对路径读取源代码目录下的文件，比如"lena.jpg"而不必是"d:/work/test/test/lena.jpg" -->
+    <LocalDebuggerWorkingDirectory>$(ProjectDir)</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <!-- 让系统PATH临时包含指定的dll目录 -->
+    <LocalDebuggerEnvironment Condition="'$(Configuration)'=='Debug'">PATH=%PATH%;$(PCL_ROOT)\bin;$(VTK_ROOT)\VTK-D\bin</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment Condition="'$(Configuration)'=='Release'">PATH=%PATH%;$(PCL_ROOT)\bin;$(VTK_ROOT)\VTK-R\bin</LocalDebuggerEnvironment>
+  </PropertyGroup>
+  <!-- 以下是程序需要加载的lib文件。-->
+  <ItemDefinitionGroup>
+    <Link Condition="'$(Configuration)'=='Debug'">
+      <AdditionalDependencies>pcl_common_debug.lib;pcl_features_debug.lib;pcl_filters_debug.lib;pcl_io_debug.lib;pcl_io_ply_debug.lib;pcl_kdtree_debug.lib;pcl_keypoints_debug.lib;pcl_ml_debug.lib;pcl_octree_debug.lib;pcl_outofcore_debug.lib;pcl_people_debug.lib;pcl_recognition_debug.lib;pcl_registration_debug.lib;pcl_sample_consensus_debug.lib;pcl_search_debug.lib;pcl_segmentation_debug.lib;pcl_stereo_debug.lib;pcl_surface_debug.lib;pcl_tracking_debug.lib;pcl_visualization_debug.lib;flann_cpp_s-gd.lib;qhullstatic_d.lib;OpenNI2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;comctl32.lib;wsock32.lib;glu32.lib;opengl32.lib;ws2_32.lib;Psapi.lib;vtkalglib-7.0.lib;vtkChartsCore-7.0.lib;vtkCommonColor-7.0.lib;vtkCommonComputationalGeometry-7.0.lib;vtkCommonCore-7.0.lib;vtkCommonDataModel-7.0.lib;vtkCommonExecutionModel-7.0.lib;vtkCommonMath-7.0.lib;vtkCommonMisc-7.0.lib;vtkCommonSystem-7.0.lib;vtkCommonTransforms-7.0.lib;vtkDICOMParser-7.0.lib;vtkDomainsChemistry-7.0.lib;vtkDomainsChemistryOpenGL2-7.0.lib;vtkexoIIc-7.0.lib;vtkexpat-7.0.lib;vtkFiltersAMR-7.0.lib;vtkFiltersCore-7.0.lib;vtkFiltersExtraction-7.0.lib;vtkFiltersFlowPaths-7.0.lib;vtkFiltersGeneral-7.0.lib;vtkFiltersGeneric-7.0.lib;vtkFiltersGeometry-7.0.lib;vtkFiltersHybrid-7.0.lib;vtkFiltersHyperTree-7.0.lib;vtkFiltersImaging-7.0.lib;vtkFiltersModeling-7.0.lib;vtkFiltersParallel-7.0.lib;vtkFiltersParallelImaging-7.0.lib;vtkFiltersProgrammable-7.0.lib;vtkFiltersSelection-7.0.lib;vtkFiltersSMP-7.0.lib;vtkFiltersSources-7.0.lib;vtkFiltersStatistics-7.0.lib;vtkFiltersTexture-7.0.lib;vtkFiltersVerdict-7.0.lib;vtkfreetype-7.0.lib;vtkGeovisCore-7.0.lib;vtkglew-7.0.lib;vtkGUISupportQt-7.0.lib;vtkGUISupportQtSQL-7.0.lib;vtkhdf5-7.0.lib;vtkhdf5_hl-7.0.lib;vtkImagingColor-7.0.lib;vtkImagingCore-7.0.lib;vtkImagingFourier-7.0.lib;vtkImagingGeneral-7.0.lib;vtkImagingHybrid-7.0.lib;vtkImagingMath-7.0.lib;vtkImagingMorphological-7.0.lib;vtkImagingSources-7.0.lib;vtkImagingStatistics-7.0.lib;vtkImagingStencil-7.0.lib;vtkInfovisCore-7.0.lib;vtkInfovisLayout-7.0.lib;vtkInteractionImage-7.0.lib;vtkInteractionStyle-7.0.lib;vtkInteractionWidgets-7.0.lib;vtkIOAMR-7.0.lib;vtkIOCore-7.0.lib;vtkIOEnSight-7.0.lib;vtkIOExodus-7.0.lib;vtkIOExport-7.0.lib;vtkIOGeometry-7.0.lib;vtkIOImage-7.0.lib;vtkIOImport-7.0.lib;vtkIOInfovis-7.0.lib;vtkIOLegacy-7.0.lib;vtkIOLSDyna-7.0.lib;vtkIOMINC-7.0.lib;vtkIOMovie-7.0.lib;vtkIONetCDF-7.0.lib;vtkIOParallel-7.0.lib;vtkIOParallelXML-7.0.lib;vtkIOPLY-7.0.lib;vtkIOSQL-7.0.lib;vtkIOVideo-7.0.lib;vtkIOXML-7.0.lib;vtkIOXMLParser-7.0.lib;vtkjpeg-7.0.lib;vtkjsoncpp-7.0.lib;vtklibxml2-7.0.lib;vtkmetaio-7.0.lib;vtkNetCDF-7.0.lib;vtkNetCDF_cxx-7.0.lib;vtkoggtheora-7.0.lib;vtkParallelCore-7.0.lib;vtkpng-7.0.lib;vtkproj4-7.0.lib;vtkRenderingAnnotation-7.0.lib;vtkRenderingContext2D-7.0.lib;vtkRenderingContextOpenGL2-7.0.lib;vtkRenderingCore-7.0.lib;vtkRenderingFreeType-7.0.lib;vtkRenderingImage-7.0.lib;vtkRenderingLabel-7.0.lib;vtkRenderingLOD-7.0.lib;vtkRenderingOpenGL2-7.0.lib;vtkRenderingQt-7.0.lib;vtkRenderingVolume-7.0.lib;vtkRenderingVolumeOpenGL2-7.0.lib;vtksqlite-7.0.lib;vtksys-7.0.lib;vtktiff-7.0.lib;vtkverdict-7.0.lib;vtkViewsContext2D-7.0.lib;vtkViewsCore-7.0.lib;vtkViewsInfovis-7.0.lib;vtkViewsQt-7.0.lib;vtkzlib-7.0.lib;QVTKWidgetPlugin.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Link Condition="'$(Configuration)'=='Release'">
+      <AdditionalDependencies>pcl_common_release.lib;pcl_features_release.lib;pcl_filters_release.lib;pcl_io_release.lib;pcl_io_ply_release.lib;pcl_kdtree_release.lib;pcl_keypoints_release.lib;pcl_ml_release.lib;pcl_octree_release.lib;pcl_outofcore_release.lib;pcl_people_release.lib;pcl_recognition_release.lib;pcl_registration_release.lib;pcl_sample_consensus_release.lib;pcl_search_release.lib;pcl_segmentation_release.lib;pcl_stereo_release.lib;pcl_surface_release.lib;pcl_tracking_release.lib;pcl_visualization_release.lib;flann_cpp_s.lib;qhullstatic.lib;OpenNI2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;comctl32.lib;wsock32.lib;glu32.lib;opengl32.lib;ws2_32.lib;Psapi.lib;vtkalglib-7.0.lib;vtkChartsCore-7.0.lib;vtkCommonColor-7.0.lib;vtkCommonComputationalGeometry-7.0.lib;vtkCommonCore-7.0.lib;vtkCommonDataModel-7.0.lib;vtkCommonExecutionModel-7.0.lib;vtkCommonMath-7.0.lib;vtkCommonMisc-7.0.lib;vtkCommonSystem-7.0.lib;vtkCommonTransforms-7.0.lib;vtkDICOMParser-7.0.lib;vtkDomainsChemistry-7.0.lib;vtkDomainsChemistryOpenGL2-7.0.lib;vtkexoIIc-7.0.lib;vtkexpat-7.0.lib;vtkFiltersAMR-7.0.lib;vtkFiltersCore-7.0.lib;vtkFiltersExtraction-7.0.lib;vtkFiltersFlowPaths-7.0.lib;vtkFiltersGeneral-7.0.lib;vtkFiltersGeneric-7.0.lib;vtkFiltersGeometry-7.0.lib;vtkFiltersHybrid-7.0.lib;vtkFiltersHyperTree-7.0.lib;vtkFiltersImaging-7.0.lib;vtkFiltersModeling-7.0.lib;vtkFiltersParallel-7.0.lib;vtkFiltersParallelImaging-7.0.lib;vtkFiltersProgrammable-7.0.lib;vtkFiltersSelection-7.0.lib;vtkFiltersSMP-7.0.lib;vtkFiltersSources-7.0.lib;vtkFiltersStatistics-7.0.lib;vtkFiltersTexture-7.0.lib;vtkFiltersVerdict-7.0.lib;vtkfreetype-7.0.lib;vtkGeovisCore-7.0.lib;vtkglew-7.0.lib;vtkGUISupportQt-7.0.lib;vtkGUISupportQtSQL-7.0.lib;vtkhdf5-7.0.lib;vtkhdf5_hl-7.0.lib;vtkImagingColor-7.0.lib;vtkImagingCore-7.0.lib;vtkImagingFourier-7.0.lib;vtkImagingGeneral-7.0.lib;vtkImagingHybrid-7.0.lib;vtkImagingMath-7.0.lib;vtkImagingMorphological-7.0.lib;vtkImagingSources-7.0.lib;vtkImagingStatistics-7.0.lib;vtkImagingStencil-7.0.lib;vtkInfovisCore-7.0.lib;vtkInfovisLayout-7.0.lib;vtkInteractionImage-7.0.lib;vtkInteractionStyle-7.0.lib;vtkInteractionWidgets-7.0.lib;vtkIOAMR-7.0.lib;vtkIOCore-7.0.lib;vtkIOEnSight-7.0.lib;vtkIOExodus-7.0.lib;vtkIOExport-7.0.lib;vtkIOGeometry-7.0.lib;vtkIOImage-7.0.lib;vtkIOImport-7.0.lib;vtkIOInfovis-7.0.lib;vtkIOLegacy-7.0.lib;vtkIOLSDyna-7.0.lib;vtkIOMINC-7.0.lib;vtkIOMovie-7.0.lib;vtkIONetCDF-7.0.lib;vtkIOParallel-7.0.lib;vtkIOParallelXML-7.0.lib;vtkIOPLY-7.0.lib;vtkIOSQL-7.0.lib;vtkIOVideo-7.0.lib;vtkIOXML-7.0.lib;vtkIOXMLParser-7.0.lib;vtkjpeg-7.0.lib;vtkjsoncpp-7.0.lib;vtklibxml2-7.0.lib;vtkmetaio-7.0.lib;vtkNetCDF-7.0.lib;vtkNetCDF_cxx-7.0.lib;vtkoggtheora-7.0.lib;vtkParallelCore-7.0.lib;vtkpng-7.0.lib;vtkproj4-7.0.lib;vtkRenderingAnnotation-7.0.lib;vtkRenderingContext2D-7.0.lib;vtkRenderingContextOpenGL2-7.0.lib;vtkRenderingCore-7.0.lib;vtkRenderingFreeType-7.0.lib;vtkRenderingImage-7.0.lib;vtkRenderingLabel-7.0.lib;vtkRenderingLOD-7.0.lib;vtkRenderingOpenGL2-7.0.lib;vtkRenderingQt-7.0.lib;vtkRenderingVolume-7.0.lib;vtkRenderingVolumeOpenGL2-7.0.lib;vtksqlite-7.0.lib;vtksys-7.0.lib;vtktiff-7.0.lib;vtkverdict-7.0.lib;vtkViewsContext2D-7.0.lib;vtkViewsCore-7.0.lib;vtkViewsInfovis-7.0.lib;vtkViewsQt-7.0.lib;vtkzlib-7.0.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories />
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

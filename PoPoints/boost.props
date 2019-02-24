@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+     OpenCV 3.0.0属性表文件
+     不用单独配置环境变量OpenCV
+     也不用单独在系统PATH上添加OpenCV可执行路径
+     只需要在VisualStudio-"菜单"-"视图"-"属性管理器"中添加现有属性表，添加本文件
+
+     使用前请将下面的BOOSTROOT修改为你的OpenCV编译输出目录
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <!-- 请把BOOSTROOT属性的值替换为你的OpenCV编译输出的目标目录，它包含x64、x86这样的子目录 -->
+    <BOOSTROOT>D:\dev\boost\boost_1_56_0</BOOSTROOT>
+    <!-- 指定INCLUDE路径-->
+    <IncludePath>$(BOOSTROOT)\;$(IncludePath)</IncludePath>
+    <!-- 指定链接所需lib目录-->
+    <LibraryPath Condition="'$(Platform)'=='Win32'">$(BOOSTROOT)\lib64-msvc-12.0\;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Platform)'=='X64'">$(BOOSTROOT)\bin\vc12-x64-shared\lib;$(BOOSTROOT)\lib64-msvc-12.0\;$(LibraryPath)</LibraryPath>
+    <!-- 保证系统处于Debug模式时，可以使用相对路径读取源代码目录下的文件，比如"lena.jpg"而不必是"d:/work/test/test/lena.jpg" -->
+    <LocalDebuggerWorkingDirectory>$(ProjectDir)</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <!-- 让系统PATH临时包含指定的dll目录 -->
+    <LocalDebuggerEnvironment Condition="'$(Platform)'=='Win32'">PATH=%PATH%;$(BOOSTROOT)\lib64-msvc-12.0\</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment Condition="'$(Platform)'=='X64'">PATH=%PATH%;$(BOOSTROOT)\bin\vc12-x64-shared\lib</LocalDebuggerEnvironment>
+  </PropertyGroup>
+  <!-- 以下是程序需要加载的lib文件。-->
+  <ItemDefinitionGroup>
+    <Link Condition="'$(Configuration)'=='Debug'">
+      <AdditionalDependencies>boost_atomic-vc120-mt-1_56.lib;boost_atomic-vc120-mt-gd-1_56.lib;boost_chrono-vc120-mt-1_56.lib;boost_chrono-vc120-mt-gd-1_56.lib;boost_container-vc120-mt-1_56.lib;boost_container-vc120-mt-gd-1_56.lib;boost_context-vc120-mt-1_56.lib;boost_context-vc120-mt-gd-1_56.lib;boost_coroutine-vc120-mt-1_56.lib;boost_coroutine-vc120-mt-gd-1_56.lib;boost_date_time-vc120-mt-1_56.lib;boost_date_time-vc120-mt-gd-1_56.lib;boost_filesystem-vc120-mt-1_56.lib;boost_filesystem-vc120-mt-gd-1_56.lib;boost_graph-vc120-mt-1_56.lib;boost_graph-vc120-mt-gd-1_56.lib;boost_iostreams-vc120-mt-1_56.lib;boost_iostreams-vc120-mt-gd-1_56.lib;boost_locale-vc120-mt-1_56.lib;boost_locale-vc120-mt-gd-1_56.lib;boost_log-vc120-mt-1_56.lib;boost_log-vc120-mt-gd-1_56.lib;boost_log_setup-vc120-mt-1_56.lib;boost_log_setup-vc120-mt-gd-1_56.lib;boost_math_c99-vc120-mt-1_56.lib;boost_math_c99-vc120-mt-gd-1_56.lib;boost_math_c99f-vc120-mt-1_56.lib;boost_math_c99f-vc120-mt-gd-1_56.lib;boost_math_c99l-vc120-mt-1_56.lib;boost_math_c99l-vc120-mt-gd-1_56.lib;boost_math_tr1-vc120-mt-1_56.lib;boost_math_tr1-vc120-mt-gd-1_56.lib;boost_math_tr1f-vc120-mt-1_56.lib;boost_math_tr1f-vc120-mt-gd-1_56.lib;boost_math_tr1l-vc120-mt-1_56.lib;boost_math_tr1l-vc120-mt-gd-1_56.lib;boost_prg_exec_monitor-vc120-mt-1_56.lib;boost_prg_exec_monitor-vc120-mt-gd-1_56.lib;boost_program_options-vc120-mt-1_56.lib;boost_program_options-vc120-mt-gd-1_56.lib;boost_python-vc120-mt-1_56.lib;boost_python-vc120-mt-gd-1_56.lib;boost_python3-vc120-mt-1_56.lib;boost_python3-vc120-mt-gd-1_56.lib;boost_random-vc120-mt-1_56.lib;boost_random-vc120-mt-gd-1_56.lib;boost_regex-vc120-mt-1_56.lib;boost_regex-vc120-mt-gd-1_56.lib;boost_serialization-vc120-mt-1_56.lib;boost_serialization-vc120-mt-gd-1_56.lib;boost_signals-vc120-mt-1_56.lib;boost_signals-vc120-mt-gd-1_56.lib;boost_system-vc120-mt-1_56.lib;boost_system-vc120-mt-gd-1_56.lib;boost_thread-vc120-mt-1_56.lib;boost_thread-vc120-mt-gd-1_56.lib;boost_timer-vc120-mt-1_56.lib;boost_timer-vc120-mt-gd-1_56.lib;boost_unit_test_framework-vc120-mt-1_56.lib;boost_unit_test_framework-vc120-mt-gd-1_56.lib;boost_wave-vc120-mt-1_56.lib;boost_wave-vc120-mt-gd-1_56.lib;boost_wserialization-vc120-mt-1_56.lib;boost_wserialization-vc120-mt-gd-1_56.lib;libboost_exception-vc120-mt-1_56.lib;libboost_exception-vc120-mt-gd-1_56.lib;libboost_test_exec_monitor-vc120-mt-1_56.lib;libboost_test_exec_monitor-vc120-mt-gd-1_56.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Link Condition="'$(Configuration)'=='Release'">
+      <AdditionalDependencies>boost_atomic-vc120-mt-1_56.lib;boost_atomic-vc120-mt-gd-1_56.lib;boost_chrono-vc120-mt-1_56.lib;boost_chrono-vc120-mt-gd-1_56.lib;boost_container-vc120-mt-1_56.lib;boost_container-vc120-mt-gd-1_56.lib;boost_context-vc120-mt-1_56.lib;boost_context-vc120-mt-gd-1_56.lib;boost_coroutine-vc120-mt-1_56.lib;boost_coroutine-vc120-mt-gd-1_56.lib;boost_date_time-vc120-mt-1_56.lib;boost_date_time-vc120-mt-gd-1_56.lib;boost_filesystem-vc120-mt-1_56.lib;boost_filesystem-vc120-mt-gd-1_56.lib;boost_graph-vc120-mt-1_56.lib;boost_graph-vc120-mt-gd-1_56.lib;boost_iostreams-vc120-mt-1_56.lib;boost_iostreams-vc120-mt-gd-1_56.lib;boost_locale-vc120-mt-1_56.lib;boost_locale-vc120-mt-gd-1_56.lib;boost_log-vc120-mt-1_56.lib;boost_log-vc120-mt-gd-1_56.lib;boost_log_setup-vc120-mt-1_56.lib;boost_log_setup-vc120-mt-gd-1_56.lib;boost_math_c99-vc120-mt-1_56.lib;boost_math_c99-vc120-mt-gd-1_56.lib;boost_math_c99f-vc120-mt-1_56.lib;boost_math_c99f-vc120-mt-gd-1_56.lib;boost_math_c99l-vc120-mt-1_56.lib;boost_math_c99l-vc120-mt-gd-1_56.lib;boost_math_tr1-vc120-mt-1_56.lib;boost_math_tr1-vc120-mt-gd-1_56.lib;boost_math_tr1f-vc120-mt-1_56.lib;boost_math_tr1f-vc120-mt-gd-1_56.lib;boost_math_tr1l-vc120-mt-1_56.lib;boost_math_tr1l-vc120-mt-gd-1_56.lib;boost_prg_exec_monitor-vc120-mt-1_56.lib;boost_prg_exec_monitor-vc120-mt-gd-1_56.lib;boost_program_options-vc120-mt-1_56.lib;boost_program_options-vc120-mt-gd-1_56.lib;boost_python-vc120-mt-1_56.lib;boost_python-vc120-mt-gd-1_56.lib;boost_python3-vc120-mt-1_56.lib;boost_python3-vc120-mt-gd-1_56.lib;boost_random-vc120-mt-1_56.lib;boost_random-vc120-mt-gd-1_56.lib;boost_regex-vc120-mt-1_56.lib;boost_regex-vc120-mt-gd-1_56.lib;boost_serialization-vc120-mt-1_56.lib;boost_serialization-vc120-mt-gd-1_56.lib;boost_signals-vc120-mt-1_56.lib;boost_signals-vc120-mt-gd-1_56.lib;boost_system-vc120-mt-1_56.lib;boost_system-vc120-mt-gd-1_56.lib;boost_thread-vc120-mt-1_56.lib;boost_thread-vc120-mt-gd-1_56.lib;boost_timer-vc120-mt-1_56.lib;boost_timer-vc120-mt-gd-1_56.lib;boost_unit_test_framework-vc120-mt-1_56.lib;boost_unit_test_framework-vc120-mt-gd-1_56.lib;boost_wave-vc120-mt-1_56.lib;boost_wave-vc120-mt-gd-1_56.lib;boost_wserialization-vc120-mt-1_56.lib;boost_wserialization-vc120-mt-gd-1_56.lib;libboost_exception-vc120-mt-1_56.lib;libboost_exception-vc120-mt-gd-1_56.lib;libboost_test_exec_monitor-vc120-mt-1_56.lib;libboost_test_exec_monitor-vc120-mt-gd-1_56.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>
