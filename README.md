@@ -7,4 +7,10 @@ pcl 1.81
 vs 2017 c
 opencv 4.0
 
-一些简单操作示例
+简单界面如下
+
+![image](https://github.com/sqhuang/QtPCL/blob/master/PoPoints/pcl/icp1.jpg)
+
+![image](https://github.com/sqhuang/QtPCL/blob/master/PoPoints/pcl/ransac5.jpg)
+
+一个简单的说明：
