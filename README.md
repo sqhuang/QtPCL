@@ -10,9 +10,10 @@ opencv 4.0
 
 简单界面如下
 
-![image](https://github.com/sqhuang/QtPCL/blob/master/PoPoints/pcl/icp1.jpg)
+PCL ![image](https://user-images.githubusercontent.com/12937079/114306440-9e24ee80-9b0e-11eb-99ac-be850859de34.png)
 
-![image](https://github.com/sqhuang/QtPCL/blob/master/PoPoints/pcl/ransac5.jpg)
+RANSAC ![image](https://user-images.githubusercontent.com/12937079/114306607-dd533f80-9b0e-11eb-8277-7b1b6a48e9b6.png)
 
-另一个什么也没有说的说明：
-[链接](https://sqhuang.github.io/2018/12/15/pcl-0/)
+
+
+
